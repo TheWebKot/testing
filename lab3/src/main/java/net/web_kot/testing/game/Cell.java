@@ -4,7 +4,9 @@ package net.web_kot.testing.game;
  * Representing game field cell coordinates
  */
 public class Cell {
-
+    
+    private final int row, column;
+    
     /**
      * Creates new field cell representation
      * @param r row number
@@ -13,6 +15,8 @@ public class Cell {
     public Cell(int r, int c) {
         if(r < 0 || r >= GameField.SIZE) throw new IndexOutOfBoundsException();
         if(c < 0 || c >= GameField.SIZE) throw new IndexOutOfBoundsException();
+        
+        row = r; column = c;
     }
 
     /**
@@ -20,7 +24,7 @@ public class Cell {
      * @return row number
      */
     public int getRow() {
-        return 0;
+        return row;
     }
 
     /**
@@ -28,7 +32,7 @@ public class Cell {
      * @return column number
      */
     public int getColumn() {
-        return 0;
+        return column;
     }
     
 }

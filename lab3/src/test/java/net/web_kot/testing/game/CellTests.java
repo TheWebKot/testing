@@ -41,7 +41,7 @@ public class CellTests {
     public void testStorage(int r, int c) {
         Cell cell = new Cell(r, c);
         Assertions.assertEquals(cell.getRow(), r);
-        Assertions.assertEquals(cell.getColumn(), r);
+        Assertions.assertEquals(cell.getColumn(), c);
     }
     
     private static Stream<Arguments> coordinatesProvider() {
