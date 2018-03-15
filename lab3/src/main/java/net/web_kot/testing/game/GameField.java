@@ -9,14 +9,16 @@ public class GameField {
      * Game field width and height
      */
     public static final int SIZE = 4;
-
+    
+    private int value;
+    
     /**
      * Set game field cell with 2^pow value
      * @param cell field cell
      * @param pow power value
      */
     public void setCellValue(Cell cell, int pow) {
-        
+        value = pow;
     }
 
     /**
@@ -25,7 +27,7 @@ public class GameField {
      * @return log2(value)
      */
     public int getCellValue(Cell cell) {
-        return 1;
+        return value;
     }
     
 }
