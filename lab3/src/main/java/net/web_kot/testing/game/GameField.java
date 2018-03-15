@@ -36,7 +36,7 @@ public class GameField {
      * @return cell occupied or not 
      */
     public boolean isCellOccupied(Cell cell) {
-        return false;
+        return field[cell.getRow()][cell.getColumn()] != 0;
     }
     
 }

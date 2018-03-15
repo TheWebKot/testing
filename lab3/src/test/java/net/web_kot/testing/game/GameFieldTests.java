@@ -2,6 +2,7 @@ package net.web_kot.testing.game;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -50,10 +51,26 @@ public class GameFieldTests {
         Assertions.assertEquals(field.getCellValue(c2), 8);
     }
     
-    @Test
+    @Nested
     @DisplayName("Cell occupation")
-    public void testCellOccupation() {
-        Assertions.assertEquals((new GameField()).isCellOccupied(new Cell(0, 0)), false);
+    public class CellOccupation {
+        
+        @Test
+        @DisplayName("Empty cell")
+        public void testCellOccupation() {
+            Assertions.assertEquals((new GameField()).isCellOccupied(new Cell(0, 0)), false);
+        }
+        
+        @Test
+        @DisplayName("Occupied cell")
+        public void testCellOccupation2() {
+            Cell cell = new Cell(2, 1);
+            GameField field = new GameField();
+            
+            field.setCellValue(cell, 3);
+            Assertions.assertEquals(field.isCellOccupied(cell), true);
+        }
+        
     }
     
 }
