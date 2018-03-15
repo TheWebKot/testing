@@ -18,6 +18,7 @@ public class GameField {
      * @param pow power value
      */
     public void setCellValue(Cell cell, int pow) {
+        if(pow < 0) throw new IllegalArgumentException();
         field[cell.getRow()][cell.getColumn()] = pow;
     }
 
