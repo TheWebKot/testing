@@ -10,7 +10,7 @@ public class GameField {
      */
     public static final int SIZE = 4;
     
-    private int value;
+    private int[][] field = new int[SIZE][SIZE];
     
     /**
      * Set game field cell with 2^pow value
@@ -18,7 +18,7 @@ public class GameField {
      * @param pow power value
      */
     public void setCellValue(Cell cell, int pow) {
-        value = pow;
+        field[cell.getRow()][cell.getColumn()] = pow;
     }
 
     /**
@@ -27,7 +27,7 @@ public class GameField {
      * @return log2(value)
      */
     public int getCellValue(Cell cell) {
-        return value;
+        return field[cell.getRow()][cell.getColumn()];
     }
     
 }
