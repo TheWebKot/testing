@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 @DisplayName("Game field")
@@ -84,6 +85,26 @@ public class GameFieldTests {
             Assertions.assertEquals(field.isCellOccupied(cell), true);
         }
         
+    }
+    
+    @Test
+    @DisplayName("Empty cells check")
+    public void testEmptyCells() {
+        Cell c1 = new Cell(0, 0), c2 = new Cell(2, 3);
+        GameField field = new GameField();
+        
+        field.setCellValue(c1, 8);
+        field.setCellValue(c2, 3);
+        
+        ArrayList<Cell> i = field.getEmptyCells();
+        
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(i.contains(c1), false),
+                () -> Assertions.assertEquals(i.contains(c2), false),
+                
+                () -> Assertions.assertEquals(i.contains(new Cell(3, 2)), true),
+                () -> Assertions.assertEquals(i.contains(new Cell(1, 0)), true)
+        );
     }
     
 }

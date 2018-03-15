@@ -1,5 +1,7 @@
 package net.web_kot.testing.game;
 
+import java.util.Objects;
+
 /**
  * Representing game field cell coordinates
  */
@@ -33,6 +35,18 @@ public class Cell {
      */
     public int getColumn() {
         return column;
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        if(!(other instanceof Cell)) return false;
+        Cell c = (Cell)other;
+        return c.row == row && c.column == column;
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, column);
     }
     
 }
