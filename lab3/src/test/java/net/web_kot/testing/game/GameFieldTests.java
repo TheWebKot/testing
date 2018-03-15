@@ -37,4 +37,17 @@ public class GameFieldTests {
         );
     }
     
+    @Test
+    @DisplayName("Set multiple cells values")
+    public void testMultipleCellsValues() {
+        Cell c1 = new Cell(1, 0), c2 = new Cell(0, 3);
+        GameField field = new GameField();
+        
+        field.setCellValue(c1, 2);
+        field.setCellValue(c2, 8);
+        
+        Assertions.assertEquals(field.getCellValue(c1), 2);
+        Assertions.assertEquals(field.getCellValue(c2), 8);
+    }
+    
 }
