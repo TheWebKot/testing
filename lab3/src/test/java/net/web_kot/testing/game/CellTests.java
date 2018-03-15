@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 @DisplayName("Cell")
 public class CellTests {
@@ -13,35 +18,21 @@ public class CellTests {
     public void testClassInitialization() {
         new Cell(0, 0);
     }
-
-    @Nested
+    
+    @ParameterizedTest
+    @MethodSource("boundsProvider")
     @DisplayName("Bounds checking")
-    public class TestInitializationBounds {
-        
-        @Test
-        @DisplayName("Row excess")
-        public void testRowExcess() {
-            Assertions.assertThrows(IndexOutOfBoundsException.class, () -> new Cell(GameField.SIZE + 1, 0));
-        }
-
-        @Test
-        @DisplayName("Column excess")
-        public void testColumnExcess() {
-            Assertions.assertThrows(IndexOutOfBoundsException.class, () -> new Cell(2, GameField.SIZE));
-        }
-
-        @Test
-        @DisplayName("Row negative value")
-        public void testRowNegative() {
-            Assertions.assertThrows(IndexOutOfBoundsException.class, () -> new Cell(-1, 1));
-        }
-
-        @Test
-        @DisplayName("Column negative value")
-        public void testColumnNegative() {
-            Assertions.assertThrows(IndexOutOfBoundsException.class, () -> new Cell(3, -3));
-        }
-        
+    public void testInitializationBounds(int r, int c) {
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> new Cell(r, c));
+    }
+    
+    private static Stream<Arguments> boundsProvider() {
+        return Stream.of(
+            Arguments.of(GameField.SIZE + 1, 0),      
+            Arguments.of(2, GameField.SIZE),      
+            Arguments.of(-1, 1),      
+            Arguments.of(3, -3)      
+        );
     }
     
 }
