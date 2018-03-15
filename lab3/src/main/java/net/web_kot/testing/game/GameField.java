@@ -1,7 +1,7 @@
 package net.web_kot.testing.game;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
 /**
  * Representing a 512 game field
@@ -13,6 +13,7 @@ public class GameField {
      */
     public static final int SIZE = 4;
     
+    private static final Random rand = new Random();
     private int[][] field = new int[SIZE][SIZE];
     
     /**
@@ -53,6 +54,15 @@ public class GameField {
             for(int j = 0; j < SIZE; j++)
                 if(field[i][j] == 0) result.add(new Cell(i, j));
         return result;
+    }
+
+    /**
+     * Returns random cell from all empty cells on game field
+     * @return cell coordinates
+     */
+    public Cell getRandomEmptyCell() {
+        ArrayList<Cell> empty = getEmptyCells();
+        return empty.get(rand.nextInt(empty.size()));
     }
     
 }
