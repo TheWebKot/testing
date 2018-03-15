@@ -11,7 +11,8 @@ public class Cell {
      * @param c col number
      */
     public Cell(int r, int c) {
-        
+        if(r < 0 || r >= GameField.SIZE) throw new IndexOutOfBoundsException();
+        if(c < 0 || c >= GameField.SIZE) throw new IndexOutOfBoundsException();
     }
     
 }
