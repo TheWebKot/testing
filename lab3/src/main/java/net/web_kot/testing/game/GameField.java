@@ -29,5 +29,14 @@ public class GameField {
     public int getCellValue(Cell cell) {
         return field[cell.getRow()][cell.getColumn()];
     }
+
+    /**
+     * Return whether cell occupied by any number
+     * @param cell cell for checking
+     * @return cell occupied or not 
+     */
+    public boolean isCellOccupied(Cell cell) {
+        return false;
+    }
     
 }

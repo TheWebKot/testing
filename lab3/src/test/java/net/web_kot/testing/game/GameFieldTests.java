@@ -50,4 +50,10 @@ public class GameFieldTests {
         Assertions.assertEquals(field.getCellValue(c2), 8);
     }
     
+    @Test
+    @DisplayName("Cell occupation")
+    public void testCellOccupation() {
+        Assertions.assertEquals((new GameField()).isCellOccupied(new Cell(0, 0)), false);
+    }
+    
 }
