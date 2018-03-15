@@ -35,4 +35,21 @@ public class CellTests {
         );
     }
     
+    @ParameterizedTest
+    @MethodSource("coordinatesProvider")
+    @DisplayName("Storage checking")
+    public void testStorage(int r, int c) {
+        Cell cell = new Cell(r, c);
+        Assertions.assertEquals(cell.getRow(), r);
+        Assertions.assertEquals(cell.getColumn(), r);
+    }
+    
+    private static Stream<Arguments> coordinatesProvider() {
+        return Stream.of(
+            Arguments.of(0, 0),
+            Arguments.of(1, 3),
+            Arguments.of(2, 0)    
+        );
+    }
+    
 }
