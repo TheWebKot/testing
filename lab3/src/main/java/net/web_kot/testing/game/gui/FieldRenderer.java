@@ -12,7 +12,7 @@ public class FieldRenderer extends JPanel {
     
     public static final int SIZE = 500;
     
-    private static final Font font = new Font("ClearSans", Font.BOLD, 45);
+    public static final Font font = new Font("ClearSans", Font.BOLD, 45);
     
     private static final int CELL_SIZE = 107;
     private final Game game;
