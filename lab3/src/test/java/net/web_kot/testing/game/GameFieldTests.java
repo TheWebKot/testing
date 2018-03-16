@@ -123,34 +123,52 @@ public class GameFieldTests {
         );
     }
     
-    @Test
-    @DisplayName("Movement test")
-    public void testMovement() {
-        int[][] from = convertMatrix(new int[][] {
-                { 2, 0, 0, 2 },      
-                { 0, 4, 0, 2 },      
-                { 8, 0, 4, 2 },      
-                { 2, 2, 2, 2 }      
-        });
-        
-        int[][] to = convertMatrix(new int[][] {
-                { 4, 0, 0, 0 },
-                { 4, 2, 0, 0 },
-                { 8, 4, 2, 0 },
-                { 4, 4, 0, 0 }
-        });
-        
+    @ParameterizedTest
+    @MethodSource("movementProvider")
+    @DisplayName("Movement")
+    public void testMovement(GameField.Direction dir, int[][] from, int[][] to) {
         GameField field = new GameField();
         for(int i = 0; i < from.length; i++)
             for(int j = 0; j < from[i].length; j++)
                 field.setCellValue(Cell.at(i, j), from[i][j]);
         
-        field.move(GameField.Direction.LEFT);
+        field.move(dir);
         
         for(int i = 0; i < from.length; i++) {
             for(int j = 0; j < from[i].length; j++)
                 Assertions.assertEquals(to[i][j], field.getCellValue(Cell.at(i, j)));
         }
+    }
+    
+    private static Stream<Arguments> movementProvider() {
+        return Stream.of(
+                Arguments.of(
+                        GameField.Direction.LEFT, 
+                        convertMatrix(new int[][] {
+                                { 2, 0, 0, 2 }, 
+                                { 0, 4, 0, 2 }, 
+                                { 8, 0, 4, 2 }, 
+                                { 2, 2, 2, 2 }
+                        }), convertMatrix(new int[][] {
+                                { 4, 0, 0, 0 }, 
+                                { 4, 2, 0, 0 }, 
+                                { 8, 4, 2, 0 }, 
+                                { 4, 4, 0, 0 }
+                        })),
+                Arguments.of(
+                        GameField.Direction.LEFT,
+                        convertMatrix(new int[][] {
+                                { 0, 0, 0, 0 },
+                                { 2, 0, 2, 4 },
+                                { 0, 0, 0, 0 },
+                                { 0, 0, 0, 0 }
+                        }), convertMatrix(new int[][] {
+                                { 0, 0, 0, 0 },
+                                { 4, 4, 0, 0 },
+                                { 0, 0, 0, 0 },
+                                { 0, 0, 0, 0 }
+                        }))
+        );
     }
     
     private static int[][] convertMatrix(int[][] matrix) {
