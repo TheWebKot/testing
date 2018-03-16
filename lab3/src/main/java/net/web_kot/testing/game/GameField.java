@@ -162,7 +162,8 @@ public class GameField {
      * Adds random tile to game field on empty position
      */
     public void addRandomTile() {
-        
+        int value = rand.nextInt(10) == 0 ? 4 : 2;
+        setCellValue(getRandomEmptyCell(), value);
     }
 
 }
