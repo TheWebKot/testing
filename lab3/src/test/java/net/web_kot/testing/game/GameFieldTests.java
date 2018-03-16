@@ -31,7 +31,7 @@ public class GameFieldTests {
             GameField field = new GameField();
 
             field.setCellValue(cell, v);
-            Assertions.assertEquals(field.getCellValue(cell), v);
+            Assertions.assertEquals(v, field.getCellValue(cell));
         }
 
         private Stream<Arguments> cellValuesProvider() {
@@ -51,8 +51,8 @@ public class GameFieldTests {
             field.setCellValue(c1, 2);
             field.setCellValue(c2, 8);
 
-            Assertions.assertEquals(field.getCellValue(c1), 2);
-            Assertions.assertEquals(field.getCellValue(c2), 8);
+            Assertions.assertEquals(2, field.getCellValue(c1));
+            Assertions.assertEquals(8, field.getCellValue(c2));
         }
 
         @Test
@@ -72,7 +72,7 @@ public class GameFieldTests {
         @Test
         @DisplayName("Empty cell")
         public void testCellOccupation() {
-            Assertions.assertEquals((new GameField()).isCellOccupied(new Cell(0, 0)), false);
+            Assertions.assertEquals(false, (new GameField()).isCellOccupied(new Cell(0, 0)));
         }
         
         @Test
@@ -82,7 +82,7 @@ public class GameFieldTests {
             GameField field = new GameField();
             
             field.setCellValue(cell, 3);
-            Assertions.assertEquals(field.isCellOccupied(cell), true);
+            Assertions.assertEquals(true, field.isCellOccupied(cell));
         }
         
     }
@@ -98,11 +98,11 @@ public class GameFieldTests {
         
         ArrayList<Cell> i = field.getEmptyCells();
         Assertions.assertAll(
-                () -> Assertions.assertEquals(i.contains(c1), false),
-                () -> Assertions.assertEquals(i.contains(c2), false),
+                () -> Assertions.assertEquals(false, i.contains(c1)),
+                () -> Assertions.assertEquals(false, i.contains(c2)),
                 
-                () -> Assertions.assertEquals(i.contains(new Cell(3, 2)), true),
-                () -> Assertions.assertEquals(i.contains(new Cell(1, 0)), true)
+                () -> Assertions.assertEquals(true, i.contains(new Cell(3, 2))),
+                () -> Assertions.assertEquals(true, i.contains(new Cell(1, 0)))
         );
     }
     
@@ -117,9 +117,39 @@ public class GameFieldTests {
         
         Cell rand = field.getRandomEmptyCell();
         Assertions.assertAll(
-                () -> Assertions.assertNotEquals(rand, c1),
-                () -> Assertions.assertNotEquals(rand, c2)
+                () -> Assertions.assertNotEquals(c1, rand),
+                () -> Assertions.assertNotEquals(c2, rand)
         );
+    }
+    
+    @Test
+    @DisplayName("Movement test")
+    public void testMovement() {
+        int[][] from = new int[][] {
+                { 2, 0, 0, 2 },      
+                { 0, 4, 0, 2 },      
+                { 8, 0, 4, 2 },      
+                { 2, 2, 2, 2 }      
+        };
+        
+        int[][] to = new int[][] {
+                { 4, 0, 0, 0 },
+                { 4, 2, 0, 0 },
+                { 8, 4, 2, 0 },
+                { 4, 4, 0, 0 }
+        };
+        
+        GameField field = new GameField();
+        for(int i = 0; i < from.length; i++)
+            for(int j = 0; j < from[i].length; j++)
+                field.setCellValue(new Cell(i, j), from[i][j]);
+        
+        field.move(GameField.Direction.LEFT);
+        
+        for(int i = 0; i < from.length; i++) {
+            for(int j = 0; j < from[i].length; j++)
+                Assertions.assertEquals(to[i][j], field.getCellValue(new Cell(i, j)));
+        }
     }
     
 }

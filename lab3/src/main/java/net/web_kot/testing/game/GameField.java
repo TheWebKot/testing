@@ -12,6 +12,27 @@ public class GameField {
      * Game field width and height
      */
     public static final int SIZE = 4;
+
+    /**
+     * Enumeration with possible cells moving directions
+     */
+    public enum Direction { 
+        
+        UP(-1, 0), DOWN(1, 0), LEFT(-1, 0), RIGHT(-1, 0);
+        
+        /**
+         * Coordinate delta x when moving in this direction
+         */
+        public final int dx;
+        
+        /**
+         * Coordinate delta y when moving in this direction
+         */
+        public final int dy;
+        
+        Direction(int _dx, int _dy) { dx = _dx; dy = _dy; }
+        
+    }
     
     private static final Random rand = new Random();
     private int[][] field = new int[SIZE][SIZE];
@@ -63,6 +84,15 @@ public class GameField {
     public Cell getRandomEmptyCell() {
         ArrayList<Cell> empty = getEmptyCells();
         return empty.get(rand.nextInt(empty.size()));
+    }
+
+    /**
+     * Moves all values in cells in specified direction 
+     * and merges cells with same value
+     * @param dir direction
+     */
+    public void move(Direction dir) {
+        
     }
     
 }

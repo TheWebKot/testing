@@ -40,8 +40,8 @@ public class CellTests {
     @DisplayName("Storage checking")
     public void testStorage(int r, int c) {
         Cell cell = new Cell(r, c);
-        Assertions.assertEquals(cell.getRow(), r);
-        Assertions.assertEquals(cell.getColumn(), c);
+        Assertions.assertEquals(r, cell.getRow());
+        Assertions.assertEquals(c, cell.getColumn());
     }
     
     private static Stream<Arguments> coordinatesProvider() {
