@@ -95,6 +95,7 @@ public class GameField {
      * @param dir direction
      */
     public void move(Direction dir) {
+        boolean[][] merged = new boolean[SIZE][SIZE];
         for(int i = 0; i < SIZE; i++)
             for(int j = 0; j < SIZE; j++) {
                 Cell current = Cell.at(i, j);
@@ -105,10 +106,13 @@ public class GameField {
                 Pair<Cell, Cell> pair = findFarthestPosition(Cell.at(i, j), dir);
                 setCellValue(current, 0);
                 
-                if(pair.getRight() != null && getCellValue(pair.getRight()) == value)
+                Cell next = pair.getRight();
+                if(next != null && !merged[next.getRow()][next.getColumn()] && getCellValue(next) == value) {
                     setCellValue(pair.getRight(), value + 1);
-                else
+                    merged[next.getRow()][next.getColumn()] = true;
+                } else {
                     setCellValue(pair.getLeft(), value);
+                }
             }
     }
 
