@@ -179,7 +179,17 @@ public class GameField {
      * @return can do any movement or not
      */
     public boolean canMove() {
-        return true;
+        for(int i = 0; i < SIZE; i++)
+            for(int j = 0; j < SIZE; j++) {
+                Cell cell = Cell.at(i, j);
+                int value = getCellValue(cell);
+                
+                for(Direction dir : Direction.values()) {
+                    Cell neighbour = nextCellAt(cell, dir);
+                    if(neighbour != null && getCellValue(neighbour) == value) return true;
+                }
+            }
+        return false;
     }
     
 }
