@@ -34,10 +34,7 @@ public class Game extends JFrame {
         this.getContentPane().setBackground(Color.decode("#faf8ef"));
         
         field = new GameField();
-        field.setCellValue(Cell.at(1, 1), 3);
-        field.setCellValue(Cell.at(0, 0), 3);
-        field.setCellValue(Cell.at(2, 2), 3);
-        field.setCellValue(Cell.at(3, 3), 3);
+        for(int i = 0; i < 2; i++) field.addRandomTile();
         
         FieldRenderer renderer = new FieldRenderer(this);
         renderer.setBounds(20, 20, FieldRenderer.SIZE, FieldRenderer.SIZE);
@@ -52,6 +49,7 @@ public class Game extends JFrame {
     
     private void onMove(GameField.Direction dir) {
         field.move(dir);
+        field.addRandomTile();
         this.repaint();
     }
 

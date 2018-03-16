@@ -271,21 +271,40 @@ public class GameFieldTests {
         );
     }
     
-    @Test
-    @DisplayName("Add random tile")
-    public void testAddRandomTile() {
-        GameField field = new GameField();
-        field.addRandomTile();
-        
-        boolean flag = false;
-        for(int i = 0; i < GameField.SIZE; i++)
-            for(int j = 0; j < GameField.SIZE; j++)
-                if(field.getCellValue(Cell.at(i, j)) != 0) {
-                    Assertions.assertEquals(false, flag);
-                    flag = true;
+    @Nested
+    @DisplayName("Random tile")
+    public class RandomTile {
+
+        @Test
+        @DisplayName("Add random tile")
+        public void testAddRandomTile() {
+            GameField field = new GameField();
+            field.addRandomTile();
+
+            boolean flag = false;
+            for(int i = 0; i < GameField.SIZE; i++)
+                for(int j = 0; j < GameField.SIZE; j++)
+                    if(field.getCellValue(Cell.at(i, j)) != 0) {
+                        Assertions.assertEquals(false, flag);
+                        flag = true;
+                    }
+
+            Assertions.assertEquals(true, flag);
+        }
+
+        @Test
+        @DisplayName("Random tile value")
+        public void testRandomTileValue() {
+            GameField field = new GameField();
+            field.addRandomTile();
+            
+            for(int i = 0; i < GameField.SIZE; i++)
+                for(int j = 0; j < GameField.SIZE; j++) {
+                    int value = field.getCellValue(Cell.at(i, j));
+                    if(value > 2) Assertions.fail("Value larger then expected");
                 }
-                
-        Assertions.assertEquals(true, flag);        
+        }
+        
     }
     
 }
