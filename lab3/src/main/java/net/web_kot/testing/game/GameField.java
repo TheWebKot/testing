@@ -3,6 +3,7 @@ package net.web_kot.testing.game;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -94,7 +95,21 @@ public class GameField {
      * @param dir direction
      */
     public void move(Direction dir) {
-        
+        for(int i = 0; i < SIZE; i++)
+            for(int j = 0; j < SIZE; j++) {
+                Cell current = Cell.at(i, j);
+                
+                int value = getCellValue(current);
+                if(value == 0) continue;
+                
+                Pair<Cell, Cell> pair = findFarthestPosition(Cell.at(i, j), dir);
+                setCellValue(current, 0);
+                
+                if(pair.getRight() != null && getCellValue(pair.getRight()) == value)
+                    setCellValue(pair.getRight(), value + 1);
+                else
+                    setCellValue(pair.getLeft(), value);
+            }
     }
 
     /**

@@ -157,7 +157,10 @@ public class GameFieldTests {
         int[][] result = new int[matrix.length][matrix[0].length];
         for(int i = 0; i < matrix.length; i++)
             for(int j = 0; j < matrix[i].length; j++)
-                result[i][j] = Integer.numberOfTrailingZeros(Integer.highestOneBit(matrix[i][j]));
+                if(matrix[i][j] == 0)
+                    result[i][j] = 0;
+                else
+                    result[i][j] = Integer.numberOfTrailingZeros(Integer.highestOneBit(matrix[i][j]));
         return result;
     }
     
