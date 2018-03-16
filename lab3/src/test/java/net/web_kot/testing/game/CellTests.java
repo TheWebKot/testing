@@ -16,14 +16,14 @@ public class CellTests {
     @Test
     @DisplayName("Class initialization")
     public void testClassInitialization() {
-        new Cell(0, 0);
+        Cell.at(0, 0);
     }
     
     @ParameterizedTest
     @MethodSource("boundsProvider")
     @DisplayName("Bounds checking")
     public void testInitializationBounds(int r, int c) {
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> new Cell(r, c));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> Cell.at(r, c));
     }
     
     private static Stream<Arguments> boundsProvider() {
@@ -39,7 +39,7 @@ public class CellTests {
     @MethodSource("coordinatesProvider")
     @DisplayName("Storage checking")
     public void testStorage(int r, int c) {
-        Cell cell = new Cell(r, c);
+        Cell cell = Cell.at(r, c);
         Assertions.assertEquals(r, cell.getRow());
         Assertions.assertEquals(c, cell.getColumn());
     }

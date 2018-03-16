@@ -1,5 +1,7 @@
 package net.web_kot.testing.game;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -73,7 +75,7 @@ public class GameField {
         ArrayList<Cell> result = new ArrayList<>();
         for(int i = 0; i < SIZE; i++)
             for(int j = 0; j < SIZE; j++)
-                if(field[i][j] == 0) result.add(new Cell(i, j));
+                if(field[i][j] == 0) result.add(Cell.at(i, j));
         return result;
     }
 
@@ -94,5 +96,17 @@ public class GameField {
     public void move(Direction dir) {
         
     }
-    
+
+    /**
+     * Returns farthest position on which current cell can be moved in given direction
+     * Also returns next cell in given direction (or null if there is no such cell)
+     * for merge possibility checking (for empty cells behavior undefined)
+     * @param cell non-empty cell coordinates
+     * @param dir direction
+     * @return pair of position and next cell
+     */
+    public Pair<Cell, Cell> findFarthestPosition(Cell cell, Direction dir) {
+        return null;
+    }
+
 }

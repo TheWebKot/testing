@@ -6,18 +6,24 @@ import java.util.Objects;
  * Representing game field cell coordinates
  */
 public class Cell {
-    
+
+    private static final Cell[][] cache = new Cell[GameField.SIZE][GameField.SIZE];
     private final int row, column;
-    
+
     /**
-     * Creates new field cell representation
+     * Returns cell representation with given coordinates
      * @param r row number
      * @param c column number
      */
-    public Cell(int r, int c) {
+    public static Cell at(int r, int c) {
         if(r < 0 || r >= GameField.SIZE) throw new IndexOutOfBoundsException();
         if(c < 0 || c >= GameField.SIZE) throw new IndexOutOfBoundsException();
         
+        if(cache[r][c] == null) cache[r][c] = new Cell(r, c);
+        return cache[r][c];
+    }
+    
+    private Cell(int r, int c) {
         row = r; column = c;
     }
 
@@ -47,6 +53,11 @@ public class Cell {
     @Override
     public int hashCode() {
         return Objects.hash(row, column);
+    }
+    
+    @Override
+    public String toString() {
+        return "(" + row + ", " + column + ")";
     }
     
 }
