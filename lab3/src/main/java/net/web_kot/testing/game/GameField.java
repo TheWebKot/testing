@@ -106,7 +106,16 @@ public class GameField {
      * @return pair of position and next cell
      */
     public Pair<Cell, Cell> findFarthestPosition(Cell cell, Direction dir) {
-        return null;
+        Cell next = nextCellAt(cell, dir);
+        if(next == null || isCellOccupied(next)) return Pair.of(cell, next);
+        
+        Cell previous;
+        do {
+            previous = next;
+            next = nextCellAt(next, dir);
+        } while(next != null && !isCellOccupied(next));
+        
+        return Pair.of(previous, next);
     }
 
     /**
