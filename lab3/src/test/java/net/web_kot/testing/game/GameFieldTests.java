@@ -167,6 +167,45 @@ public class GameFieldTests {
                                 { 4, 4, 0, 0 },
                                 { 0, 0, 0, 0 },
                                 { 0, 0, 0, 0 }
+                        })),
+                Arguments.of(
+                        GameField.Direction.RIGHT,
+                        convertMatrix(new int[][] {
+                                { 2, 0, 0, 2 },
+                                { 0, 4, 0, 2 },
+                                { 8, 0, 4, 2 },
+                                { 4, 0, 2, 2 }
+                        }), convertMatrix(new int[][] {
+                                { 0, 0, 0, 4 },
+                                { 0, 0, 4, 2 },
+                                { 0, 8, 4, 2 },
+                                { 0, 0, 4, 4 }
+                        })),
+                Arguments.of(
+                        GameField.Direction.UP,
+                        convertMatrix(new int[][] {
+                                { 2, 0, 0, 2 },
+                                { 0, 4, 0, 2 },
+                                { 8, 0, 4, 2 },
+                                { 4, 0, 2, 2 }
+                        }), convertMatrix(new int[][] {
+                                { 2, 4, 4, 4 },
+                                { 8, 0, 2, 4 },
+                                { 4, 0, 0, 0 },
+                                { 0, 0, 0, 0 }
+                        })),
+                Arguments.of(
+                        GameField.Direction.DOWN,
+                        convertMatrix(new int[][] {
+                                { 2, 0, 0, 2 },
+                                { 0, 4, 0, 2 },
+                                { 8, 0, 4, 2 },
+                                { 4, 0, 2, 2 }
+                        }), convertMatrix(new int[][] {
+                                { 0, 0, 0, 0 },
+                                { 2, 0, 0, 0 },
+                                { 8, 0, 4, 4 },
+                                { 4, 4, 4, 4 }
                         }))
         );
     }
