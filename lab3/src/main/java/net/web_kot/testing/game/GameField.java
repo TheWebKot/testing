@@ -20,7 +20,7 @@ public class GameField {
      */
     public enum Direction { 
         
-        UP(-1, 0), DOWN(1, 0), LEFT(-1, 0), RIGHT(-1, 0);
+        UP(-1, 0), DOWN(1, 0), LEFT(0, -1), RIGHT(0, 1);
         
         /**
          * Coordinate delta x when moving in this direction
@@ -107,6 +107,20 @@ public class GameField {
      */
     public Pair<Cell, Cell> findFarthestPosition(Cell cell, Direction dir) {
         return null;
+    }
+
+    /**
+     * Returns next cell in given direction (or null if there is no such cell)
+     * @param cell cell coordinates
+     * @param dir direction
+     * @return next cell position
+     */
+    public Cell nextCellAt(Cell cell, Direction dir) {
+        try {
+            return Cell.at(cell.getRow() + dir.dx, cell.getColumn() + dir.dy);
+        } catch(IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 
 }

@@ -195,4 +195,20 @@ public class GameFieldTests {
         );
     }
     
+    @ParameterizedTest
+    @MethodSource("nextPositionsProvider")
+    @DisplayName("Next cell in given direction")
+    public void testNextCell(GameField.Direction dir, Cell cell, Cell expected) {
+        Assertions.assertEquals(expected, (new GameField()).nextCellAt(cell, dir));
+    }
+    
+    private static Stream<Arguments> nextPositionsProvider() {
+        return Stream.of(
+                Arguments.of(GameField.Direction.LEFT, Cell.at(1, 1), Cell.at(1, 0)),
+                Arguments.of(GameField.Direction.UP, Cell.at(0, 3), null),
+                Arguments.of(GameField.Direction.DOWN, Cell.at(0, 3), Cell.at(1, 3)),
+                Arguments.of(GameField.Direction.RIGHT, Cell.at(2, 2), Cell.at(2, 3))
+        );
+    }
+    
 }
