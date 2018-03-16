@@ -186,7 +186,10 @@ public class GameField {
                 
                 for(Direction dir : Direction.values()) {
                     Cell neighbour = nextCellAt(cell, dir);
-                    if(neighbour != null && getCellValue(neighbour) == value) return true;
+                    if(neighbour != null) {
+                        int val = getCellValue(neighbour);
+                        if(val == 0 || val == value) return true;
+                    }
                 }
             }
         return false;
