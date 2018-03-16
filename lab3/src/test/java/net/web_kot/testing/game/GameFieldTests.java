@@ -348,4 +348,22 @@ public class GameFieldTests {
         );
     }
     
+    @Test
+    @DisplayName("Can move")
+    private void testCanMove() {
+        int[][] from = convertMatrix(new int[][] {
+                { 2, 0, 0, 2 },
+                { 0, 4, 0, 2 },
+                { 8, 0, 4, 2 },
+                { 2, 2, 2, 2 }
+        });
+        
+        GameField field = new GameField();
+        for(int i = 0; i < from.length; i++)
+            for(int j = 0; j < from[i].length; j++)
+                field.setCellValue(Cell.at(i, j), from[i][j]);
+        
+        Assertions.assertEquals(true, field.canMove());
+    }
+    
 }

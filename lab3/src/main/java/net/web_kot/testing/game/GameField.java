@@ -173,5 +173,13 @@ public class GameField {
         setCellValue(cell, rand.nextInt(10) == 0 ? 2 : 1);
         return cell;
     }
+
+    /**
+     * Returns whether we can do any movement
+     * @return can do any movement or not
+     */
+    public boolean canMove() {
+        return true;
+    }
     
 }
