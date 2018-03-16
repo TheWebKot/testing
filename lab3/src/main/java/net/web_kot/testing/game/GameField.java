@@ -40,6 +40,7 @@ public class GameField {
     
     private static final Random rand = new Random();
     private int[][] field = new int[SIZE][SIZE];
+    private int score = 0;
     
     /**
      * Set game field cell with 2^pow value
@@ -114,6 +115,8 @@ public class GameField {
                 if(next != null && !merged[next.getRow()][next.getColumn()] && getCellValue(next) == value) {
                     setCellValue(pair.getRight(), value + 1);
                     merged[next.getRow()][next.getColumn()] = true;
+                    
+                    score += 1 << (value + 1);
                     moved.set(true);
                 } else {
                     setCellValue(pair.getLeft(), value);
@@ -193,6 +196,14 @@ public class GameField {
                 }
             }
         return false;
+    }
+
+    /**
+     * Returns player total score
+     * @return score
+     */
+    public int getScore() {
+        return score;
     }
     
 }
