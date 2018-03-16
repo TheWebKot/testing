@@ -271,4 +271,20 @@ public class GameFieldTests {
         );
     }
     
+    @Test
+    @DisplayName("Add random tile")
+    public void testAddRandomTile() {
+        GameField field = new GameField();
+        boolean flag = false;
+        
+        for(int i = 0; i < GameField.SIZE; i++)
+            for(int j = 0; j < GameField.SIZE; j++)
+                if(field.getCellValue(Cell.at(i, j)) != 0) {
+                    Assertions.assertEquals(false, flag);
+                    flag = true;
+                }
+                
+        Assertions.assertEquals(true, flag);        
+    }
+    
 }
