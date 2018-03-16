@@ -14,6 +14,7 @@ import static javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW;
 public class Game extends JFrame {
     
     private GameField field;
+    private Cell latestAdded;
     
     public static void main(String[] args) throws Exception {
         (new Game()).setVisible(true);
@@ -33,8 +34,7 @@ public class Game extends JFrame {
         
         this.getContentPane().setBackground(Color.decode("#faf8ef"));
         
-        field = new GameField();
-        for(int i = 0; i < 2; i++) field.addRandomTile();
+        startGame();
         
         FieldRenderer renderer = new FieldRenderer(this);
         renderer.setBounds(20, 20, FieldRenderer.SIZE, FieldRenderer.SIZE);
@@ -43,13 +43,24 @@ public class Game extends JFrame {
         this.registerKeys();
     }
     
+    private void startGame() {
+        field = new GameField();
+        for(int i = 0; i < 2; i++) field.addRandomTile();
+        
+        latestAdded = null;
+    }
+    
+    public Cell getLatestAdded() {
+        return latestAdded;
+    }
+    
     public GameField getField() {
         return field;
     }
     
     private void onMove(GameField.Direction dir) {
         field.move(dir);
-        field.addRandomTile();
+        latestAdded = field.addRandomTile();
         this.repaint();
     }
 

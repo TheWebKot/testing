@@ -305,6 +305,14 @@ public class GameFieldTests {
                 }
         }
         
+        @Test
+        @DisplayName("Return value")
+        public void testTileReturn() {
+            GameField field = new GameField();
+            Cell cell = field.addRandomTile();
+            Assertions.assertNotEquals(0, field.getCellValue(cell));
+        }
+        
     }
     
 }

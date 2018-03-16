@@ -160,10 +160,12 @@ public class GameField {
 
     /**
      * Adds random tile to game field on empty position
+     * @return coordinates of added cell
      */
-    public void addRandomTile() {
-        int value = rand.nextInt(10) == 0 ? 2 : 1;
-        setCellValue(getRandomEmptyCell(), value);
+    public Cell addRandomTile() {
+        Cell cell = getRandomEmptyCell();
+        setCellValue(cell, rand.nextInt(10) == 0 ? 2 : 1);
+        return cell;
     }
-
+    
 }

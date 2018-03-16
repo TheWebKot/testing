@@ -41,6 +41,14 @@ public class FieldRenderer extends JPanel {
                 
                 int value = game.getField().getCellValue(Cell.at(i, j));
                 
+                Cell latest = game.getLatestAdded();
+                if(latest != null && latest.getRow() == i && latest.getColumn() == j) {
+                    g.setColor(Color.decode("#444444"));
+                    RoundRectangle2D.Double cell = new RoundRectangle2D.Double(
+                            x - 1, y - 1, CELL_SIZE + 2, CELL_SIZE + 2, 8, 8);
+                    g.fill(cell);
+                }
+                
                 g.setColor(Color.decode(getCellColor(value)));
                 RoundRectangle2D.Double cell = new RoundRectangle2D.Double(x, y, CELL_SIZE, CELL_SIZE, 8, 8);
                 g.fill(cell);
