@@ -373,7 +373,13 @@ public class GameFieldTests {
                         { 4, 8, 16, 2 },
                         { 8, 16, 2, 4 },
                         { 16, 2, 4, 8 }
-                }), false)
+                }), false),
+                Arguments.of(convertMatrix(new int[][] {
+                        { 2, 4, 8, 16 },
+                        { 4, 8, 16, 2 },
+                        { 0, 16, 2, 4 },
+                        { 16, 0, 4, 8 }
+                }), true)
         );
     }
     
