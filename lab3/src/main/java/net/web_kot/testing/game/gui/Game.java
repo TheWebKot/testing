@@ -59,9 +59,10 @@ public class Game extends JFrame {
     }
     
     private void onMove(GameField.Direction dir) {
-        field.move(dir);
-        latestAdded = field.addRandomTile();
-        this.repaint();
+        if(field.move(dir)) {
+            latestAdded = field.addRandomTile();
+            this.repaint();
+        }
     }
 
     private void registerKeys() {

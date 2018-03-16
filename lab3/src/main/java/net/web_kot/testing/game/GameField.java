@@ -4,6 +4,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.IntStream;
 
 /**
@@ -93,10 +94,12 @@ public class GameField {
      * Moves all values in cells in specified direction 
      * and merges cells with same value
      * @param dir direction
+     * @return is at least one cell has been moved
      */
-    public void move(Direction dir) {
+    public boolean move(Direction dir) {
         boolean[][] merged = new boolean[SIZE][SIZE];
-        
+
+        AtomicBoolean moved = new AtomicBoolean(false);
         streamForDelta(dir.dx).forEach((i) ->
             streamForDelta(dir.dy).forEach((j) -> {
                 Cell current = Cell.at(i, j);
@@ -111,11 +114,14 @@ public class GameField {
                 if(next != null && !merged[next.getRow()][next.getColumn()] && getCellValue(next) == value) {
                     setCellValue(pair.getRight(), value + 1);
                     merged[next.getRow()][next.getColumn()] = true;
+                    moved.set(true);
                 } else {
                     setCellValue(pair.getLeft(), value);
+                    if(!pair.getLeft().equals(current)) moved.set(true);
                 }
             })
         );
+        return moved.get();
     }
     
     private IntStream streamForDelta(int d) {
