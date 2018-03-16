@@ -65,6 +65,20 @@ public class FieldRenderer extends JPanel {
                     g.drawString(str, x + (CELL_SIZE - w) / 2, y + CELL_SIZE - (CELL_SIZE - h) / 2);
                 }
             }
+            
+        if(game.isGameOver()) {
+            g.setColor(new Color(255, 255, 255, 170));
+            g.fillRect(0, 0, SIZE, SIZE);
+
+            g.setColor(Color.decode("#776e65"));
+            String str = "Game over!";
+
+            Font f = font.deriveFont(64F);
+            int w = g.getFontMetrics(f).stringWidth(str);
+
+            g.setFont(f);
+            g.drawString(str, (SIZE - w) / 2, 212);
+        }
     }
     
     private String getCellColor(int value) {

@@ -16,6 +16,8 @@ public class Game extends JFrame {
     private GameField field;
     private Cell latestAdded;
     
+    private boolean gameOver;
+    
     public static void main(String[] args) throws Exception {
         (new Game()).setVisible(true);
     }
@@ -48,6 +50,7 @@ public class Game extends JFrame {
         for(int i = 0; i < 2; i++) field.addRandomTile();
         
         latestAdded = null;
+        gameOver = false;
     }
     
     public Cell getLatestAdded() {
@@ -58,9 +61,16 @@ public class Game extends JFrame {
         return field;
     }
     
+    public boolean isGameOver() {
+        return gameOver;
+    }
+    
     private void onMove(GameField.Direction dir) {
+        if(gameOver) return;
         if(field.move(dir)) {
             latestAdded = field.addRandomTile();
+            if(!field.canMove()) gameOver = true;
+            
             this.repaint();
         }
     }
