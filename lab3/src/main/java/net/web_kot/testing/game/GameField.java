@@ -3,8 +3,8 @@ package net.web_kot.testing.game;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 /**
  * Representing a 512 game field
@@ -96,12 +96,13 @@ public class GameField {
      */
     public void move(Direction dir) {
         boolean[][] merged = new boolean[SIZE][SIZE];
-        for(int i = 0; i < SIZE; i++)
-            for(int j = 0; j < SIZE; j++) {
+        
+        streamForDelta(dir.dx).forEach((i) ->
+            streamForDelta(dir.dy).forEach((j) -> {
                 Cell current = Cell.at(i, j);
                 
                 int value = getCellValue(current);
-                if(value == 0) continue;
+                if(value == 0) return;
                 
                 Pair<Cell, Cell> pair = findFarthestPosition(Cell.at(i, j), dir);
                 setCellValue(current, 0);
@@ -113,7 +114,13 @@ public class GameField {
                 } else {
                     setCellValue(pair.getLeft(), value);
                 }
-            }
+            })
+        );
+    }
+    
+    private IntStream streamForDelta(int d) {
+        if(d == -1) return IntStream.range(0, SIZE);
+        return IntStream.iterate(SIZE - 1, i -> i - 1).limit(SIZE);
     }
 
     /**
