@@ -12,6 +12,9 @@ apply plugin: 'java'
 
 apply plugin: 'org.junit.platform.gradle.plugin'
 
+apply plugin: 'application'
+mainClassName = "net.web_kot.testing.game.gui.Game"
+
 repositories {
     mavenCentral()
 }
@@ -25,4 +28,13 @@ dependencies {
 
 task javadocs(type: Javadoc) {
     source = sourceSets.main.allJava
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+    from {
+        configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }

@@ -14,6 +14,7 @@ public class Cell {
      * Returns cell representation with given coordinates
      * @param r row number
      * @param c column number
+     * @return cell with given coordinates
      */
     public static Cell at(int r, int c) {
         if(r < 0 || r >= GameField.SIZE) throw new IndexOutOfBoundsException();
