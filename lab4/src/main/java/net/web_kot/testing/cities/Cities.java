@@ -14,8 +14,12 @@ public class Cities {
     private String last = null;
     private int current = 1;
     
-    private int delay = 10000;
+    private int delay = 80000;
     private long lastAnswer;
+    
+    public static void main(String[] args) throws Exception {
+        (new Frame()).setVisible(true);
+    }
     
     public Cities() {
         try {
@@ -64,6 +68,11 @@ public class Cities {
     
     public void setDelay(int value) {
         delay = value;
+    }
+    
+    public int getRemainingTime() {
+        int time = (int)((lastAnswer + delay) - System.currentTimeMillis());
+        return time >= 0 ? time : 0;
     }
     
 }
