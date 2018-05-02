@@ -39,6 +39,7 @@ public class Cities {
     public void answer(String city) throws Exception {
         city = city.toLowerCase();
         
+        if(!cityExists(city)) throw new Exception("This city not found");
         if(used.contains(city)) throw new Exception("This city already answered");
         if(last != null && !isValidAnswerAfter(last, city)) throw new Exception("This city starts from wrong character");
         
