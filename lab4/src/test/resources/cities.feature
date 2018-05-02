@@ -3,8 +3,14 @@ Feature: Cities game
   Scenario: game
     Given I have my cities game
     
-  Scenario: check city
+  Scenario Outline: city exists
     Given I have my cities game
-    When I entered "Барнаул" as city name
+    When I entered "<name>" as city name
     And I check does this city exist
-    Then The result should be true
+    Then The result should be <result>
+    
+    Examples:
+      | name    | result |
+      | Барнаул | true   |
+      | Москва  | true   |
+      | Фывыпро | false  |
