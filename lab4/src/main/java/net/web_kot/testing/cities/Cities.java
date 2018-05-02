@@ -29,4 +29,8 @@ public class Cities {
         return c;
     }
     
+    public boolean isValidAnswerAfter(String prev, String current) {
+        return true;
+    }
+    
 }

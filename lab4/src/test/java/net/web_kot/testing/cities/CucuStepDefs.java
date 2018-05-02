@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 public class CucuStepDefs implements En {
     
     private Cities instance;
-    private String cityName;
+    private String cityName, otherName;
     private boolean result;
     
     public CucuStepDefs() {
@@ -31,7 +31,14 @@ public class CucuStepDefs implements En {
         Then("^The last character should be ([^\"]*)$", (String chr) -> 
                 Assertions.assertEquals(chr.charAt(0), instance.getLastCharacter(cityName))
         );
-
+        
+        When("^Other player entered \"([^\"]*)\" as city name$", (String name) -> 
+                otherName = name
+        );
+        
+        And("^I want to check does my answer valid$", () ->
+                result = instance.isValidAnswerAfter(otherName, cityName)
+        );
 
     }
     

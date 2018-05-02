@@ -29,4 +29,15 @@ Feature: Cities game
       | Агайры    | р |
       | Ажбай     | а |
     
+  Scenario Outline: follow
+    Given I have my cities game
+    When Other player entered "<other>" as city name
+    And I entered "<name>" as city name
+    And I want to check does my answer valid 
+    Then The result should be <result>
+    
+    Examples:
+      | other | name | result |
+      | Новосибирск | Кемерово | true |
+    
     
