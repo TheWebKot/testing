@@ -39,5 +39,7 @@ Feature: Cities game
     Examples:
       | other | name | result |
       | Новосибирск | Кемерово | true |
+      | Барнаул     | Москва   | false |
+      | Тюмень      | Нижневартовск | true |
     
     
