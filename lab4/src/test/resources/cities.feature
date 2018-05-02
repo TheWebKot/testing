@@ -85,5 +85,6 @@ Feature: Cities game
     When Current player answered "Москва"
     Then Current player should be 2
     When Current player answered "Аропаккузи"
+    And Current player answered "Аропаккузи"
     Then Current player should be 1
     
