@@ -14,3 +14,4 @@ Feature: Cities game
       | Барнаул | true   |
       | Москва  | true   |
       | Фывыпро | false  |
+      | НовоСибирск | true |
