@@ -7,6 +7,7 @@ import java.util.HashSet;
 public class Cities {
     
     private HashSet<String> cities = new HashSet<>();
+    private HashSet<String> used = new HashSet<>();
     
     public Cities() {
         try {
@@ -34,7 +35,9 @@ public class Cities {
     }
     
     public void answer(String city) throws Exception {
-        throw new Exception("This city already answered");
+        city = city.toLowerCase();
+        if(used.contains(city)) throw new Exception("This city already answered");
+        used.add(city);
     }
     
 }
