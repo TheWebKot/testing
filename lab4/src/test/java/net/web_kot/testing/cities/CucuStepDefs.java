@@ -56,6 +56,10 @@ public class CucuStepDefs implements En {
             Assertions.assertTrue(exception.getMessage().contains(message));
         });
         
+        Then("^Should not be thrown exception$", () -> {
+            Assertions.assertNull(exception);
+        });
+
     }
     
 }

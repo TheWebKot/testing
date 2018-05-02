@@ -45,12 +45,24 @@ Feature: Cities game
   Scenario Outline: already used
     Given I have my cities game
     When Current player answered "<name>"
+    Then Should not be thrown exception
     And Current player answered "<other>"
+    Then Should not be thrown exception
     And Current player answered "<check>"
     Then Should be thrown exception with message contains "answered"
     
     Examples:
       | name | other | check |
       | Барнаул | Бийск | Барнаул |
+      | Москва  | Новосибирск | Новосибирск |
+    
+  Scenario: valid sequence
+    Given I have my cities game
+    When Current player answered "Барнаул"
+    Then Should not be thrown exception
+    And Current player answered "Лосево"
+    Then Should not be thrown exception
+    And Current player answered "Омск"
+    Then Should not be thrown exception
     
     
