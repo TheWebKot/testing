@@ -24,7 +24,9 @@ public class Cities {
     }
     
     public char getLastCharacter(String name) {
-        return Character.toLowerCase(name.charAt(name.length() - 1));
+        char c = Character.toLowerCase(name.charAt(name.length() - 1));
+        if(c == 'ь' || c == 'ы' || c == 'й') return Character.toLowerCase(name.charAt(name.length() - 2));
+        return c;
     }
     
 }
