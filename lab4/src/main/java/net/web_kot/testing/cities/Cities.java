@@ -7,7 +7,9 @@ import java.util.HashSet;
 public class Cities {
     
     private HashSet<String> cities = new HashSet<>();
+    
     private HashSet<String> used = new HashSet<>();
+    private String last = null;
     
     public Cities() {
         try {
@@ -36,8 +38,12 @@ public class Cities {
     
     public void answer(String city) throws Exception {
         city = city.toLowerCase();
+        
         if(used.contains(city)) throw new Exception("This city already answered");
+        if(last != null && !isValidAnswerAfter(last, city)) throw new Exception("This city starts from wrong character");
+        
         used.add(city);
+        last = city;
     }
     
 }
