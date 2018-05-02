@@ -24,5 +24,6 @@ Feature: Cities game
     Examples:
       | name | char |
       | Волгоград | д |
+      | ЯлтА      | а |
     
     
