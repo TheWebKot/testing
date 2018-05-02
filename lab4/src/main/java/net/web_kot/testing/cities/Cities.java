@@ -12,7 +12,7 @@ public class Cities {
         try {
             BufferedReader in = new BufferedReader(new FileReader("cities.txt"));
             String s;
-            while((s = in.readLine()) != null) cities.add(s);
+            while((s = in.readLine()) != null) cities.add(s.toLowerCase());
             in.close();
         } catch(Exception e) {
             throw new RuntimeException(e);
@@ -20,7 +20,7 @@ public class Cities {
     }
     
     public boolean cityExists(String name) {
-        return cities.contains(name);
+        return cities.contains(name.toLowerCase());
     }
     
 }
