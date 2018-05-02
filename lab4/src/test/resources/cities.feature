@@ -78,3 +78,12 @@ Feature: Cities game
     Then Should not be thrown exception
     And Current player answered "Аккыык"
     Then Should be thrown exception with message contains "not found"
+    
+  Scenario: current player
+    Given I have my cities game
+    Then Current player should be 1
+    When Current player answered "Москва"
+    Then Current player should be 2
+    When Current player answered "Аропаккузи"
+    Then Current player should be 1
+    

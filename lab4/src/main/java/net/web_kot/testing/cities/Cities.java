@@ -10,6 +10,7 @@ public class Cities {
     
     private HashSet<String> used = new HashSet<>();
     private String last = null;
+    private int current = 1;
     
     public Cities() {
         try {
@@ -45,6 +46,12 @@ public class Cities {
         
         used.add(city);
         last = city;
+        
+        current = current == 1 ? 2 : 1;
+    }
+    
+    public int getCurrentPlayer() {
+        return current;
     }
     
 }

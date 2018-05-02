@@ -59,6 +59,10 @@ public class CucuStepDefs implements En {
         Then("^Should not be thrown exception$", () -> {
             Assertions.assertNull(exception);
         });
+        
+        Then("^Current player should be (\\d+)$", (Integer player) -> 
+                Assertions.assertEquals((int)player, instance.getCurrentPlayer())
+        );
 
     }
     
