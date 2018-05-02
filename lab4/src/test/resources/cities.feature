@@ -84,7 +84,15 @@ Feature: Cities game
     Then Current player should be 1
     When Current player answered "Москва"
     Then Current player should be 2
-    When Current player answered "Аропаккузи"
     And Current player answered "Аропаккузи"
     Then Current player should be 1
+    
+  Scenario: time check
+    Given I have my cities game
+    Given Delay is 200 ms
+    When Current player answered "Бийск"
+    Then Should not be thrown exception
+    And Current player wait 220 ms
+    And Current player answered "Кемерово"
+    Then Should be thrown exception with message contains "over"
     

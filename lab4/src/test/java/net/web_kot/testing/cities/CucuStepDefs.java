@@ -63,6 +63,18 @@ public class CucuStepDefs implements En {
         Then("^Current player should be (\\d+)$", (Integer player) -> 
                 Assertions.assertEquals((int)player, instance.getCurrentPlayer())
         );
+        
+        Given("^Delay is (\\d+) ms$", (Integer delay) -> 
+                instance.setDelay(delay)
+        );
+        
+        And("^Current player wait (\\d+) ms$", (Integer delay) -> {
+            try {
+                Thread.sleep(1000);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        });
 
     }
     

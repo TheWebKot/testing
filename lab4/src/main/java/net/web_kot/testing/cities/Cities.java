@@ -2,7 +2,9 @@ package net.web_kot.testing.cities;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.concurrent.TimeUnit;
 
 public class Cities {
     
@@ -11,6 +13,9 @@ public class Cities {
     private HashSet<String> used = new HashSet<>();
     private String last = null;
     private int current = 1;
+    
+    private int delay = 10000;
+    private long lastAnswer;
     
     public Cities() {
         try {
@@ -21,6 +26,7 @@ public class Cities {
         } catch(Exception e) {
             throw new RuntimeException(e);
         }
+        lastAnswer = System.currentTimeMillis();
     }
     
     public boolean cityExists(String name) {
@@ -40,18 +46,24 @@ public class Cities {
     public void answer(String city) throws Exception {
         city = city.toLowerCase();
         
+        if(System.currentTimeMillis() > lastAnswer + delay) throw new Exception("Time is over");
         if(!cityExists(city)) throw new Exception("This city not found");
-        if(used.contains(city)) throw new Exception("This city already answered");
         if(last != null && !isValidAnswerAfter(last, city)) throw new Exception("This city starts from wrong character");
+        if(used.contains(city)) throw new Exception("This city already answered");
         
         used.add(city);
         last = city;
         
         current = current == 1 ? 2 : 1;
+        lastAnswer = System.currentTimeMillis();
     }
     
     public int getCurrentPlayer() {
         return current;
+    }
+    
+    public void setDelay(int value) {
+        delay = value;
     }
     
 }
