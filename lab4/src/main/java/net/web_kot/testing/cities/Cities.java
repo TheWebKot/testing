@@ -24,7 +24,7 @@ public class Cities {
     }
     
     public char getLastCharacter(String name) {
-        return name.charAt(name.length() - 1);
+        return Character.toLowerCase(name.charAt(name.length() - 1));
     }
     
 }
