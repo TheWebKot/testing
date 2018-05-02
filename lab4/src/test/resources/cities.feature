@@ -42,4 +42,15 @@ Feature: Cities game
       | Барнаул     | Москва   | false |
       | Тюмень      | Нижневартовск | true |
     
+  Scenario Outline: already used
+    Given I have my cities game
+    When Current player answered "<name>"
+    And Current player answered "<other>"
+    And Current player answered "<check>"
+    Then Should be thrown exception with message contains "answered"
+    
+    Examples:
+      | name | other | check |
+      | Барнаул | Бийск | Барнаул |
+    
     

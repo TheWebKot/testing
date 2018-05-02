@@ -11,6 +11,8 @@ public class CucuStepDefs implements En {
     private String cityName, otherName;
     private boolean result;
     
+    private Exception exception = null;
+    
     public CucuStepDefs() {
         Given("^I have my cities game$", () -> 
                 instance = new Cities()
@@ -40,6 +42,20 @@ public class CucuStepDefs implements En {
                 result = instance.isValidAnswerAfter(otherName, cityName)
         );
 
+        When("^Current player answered \"([^\"]*)\"$", (String city) -> {
+            exception = null;
+            try {
+                instance.answer(city);
+            } catch(Exception e) {
+                exception = e;
+            }
+        });
+        
+        Then("^Should be thrown exception with message contains \"([^\"]*)\"$", (String message) -> {
+            Assertions.assertNotNull(exception);
+            Assertions.assertTrue(exception.getMessage().contains(message));
+        });
+        
     }
     
 }

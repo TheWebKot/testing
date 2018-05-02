@@ -33,4 +33,8 @@ public class Cities {
         return getLastCharacter(prev) == Character.toLowerCase(current.charAt(0));
     }
     
+    public void answer(String city) throws Exception {
+        throw new Exception("This city already answered");
+    }
+    
 }
