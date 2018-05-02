@@ -65,4 +65,9 @@ Feature: Cities game
     And Current player answered "Омск"
     Then Should not be thrown exception
     
-    
+  Scenario: wrong character
+    Given I have my cities game
+    When Current player answered "Новосибирск"
+    Then Should not be thrown exception
+    And Current player answered "Бийск"
+    Then Should be thrown exception with message contains "wrong"
