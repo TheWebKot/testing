@@ -71,3 +71,10 @@ Feature: Cities game
     Then Should not be thrown exception
     And Current player answered "Бийск"
     Then Should be thrown exception with message contains "wrong"
+    
+  Scenario: wrong city
+    Given I have my cities game
+    When Current player answered "Москва"
+    Then Should not be thrown exception
+    And Current player answered "Аккыык"
+    Then Should be thrown exception with message contains "not found"
