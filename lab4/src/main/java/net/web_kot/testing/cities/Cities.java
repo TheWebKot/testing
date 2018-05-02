@@ -30,7 +30,7 @@ public class Cities {
     }
     
     public boolean isValidAnswerAfter(String prev, String current) {
-        return true;
+        return getLastCharacter(prev) == Character.toLowerCase(current.charAt(0));
     }
     
 }
