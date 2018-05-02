@@ -53,8 +53,8 @@ Feature: Cities game
     
     Examples:
       | name | other | check |
-      | Барнаул | Бийск | Барнаул |
-      | Москва  | Новосибирск | Новосибирск |
+      | Омск | Кемерово | Омск |
+      | Бийск  | Красноярск | Красноярск |
     
   Scenario: valid sequence
     Given I have my cities game
