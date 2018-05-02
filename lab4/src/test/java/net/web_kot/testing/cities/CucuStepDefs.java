@@ -25,7 +25,7 @@ public class CucuStepDefs implements En {
         );
         
         Then("^The result should be ([^\"]*)$", (String result) -> 
-                Assertions.assertEquals(this.result, Boolean.parseBoolean(result))
+                Assertions.assertEquals(Boolean.parseBoolean(result), this.result)
         );
         
         Then("^The last character should be ([^\"]*)$", (String chr) -> 
