@@ -15,3 +15,14 @@ Feature: Cities game
       | Москва  | true   |
       | Фывыпро | false  |
       | НовоСибирск | true |
+    
+  Scenario Outline: last character
+    Given I have my cities game
+    When I entered "<name>" as city name
+    Then The last character should be <char>
+    
+    Examples:
+      | name | char |
+      | Волгоград | д |
+    
+    

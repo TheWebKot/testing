@@ -23,4 +23,8 @@ public class Cities {
         return cities.contains(name.toLowerCase());
     }
     
+    public char getLastCharacter(String name) {
+        return name.charAt(name.length() - 1);
+    }
+    
 }

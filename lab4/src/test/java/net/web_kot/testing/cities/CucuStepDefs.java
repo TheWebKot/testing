@@ -28,7 +28,11 @@ public class CucuStepDefs implements En {
                 Assertions.assertEquals(this.result, Boolean.parseBoolean(result))
         );
         
-        
+        Then("^The last character should be ([^\"]*)$", (String chr) -> 
+                Assertions.assertEquals(chr.charAt(0), instance.getLastCharacter(cityName))
+        );
+
+
     }
     
 }
