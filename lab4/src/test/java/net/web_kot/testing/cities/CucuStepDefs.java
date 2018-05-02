@@ -75,6 +75,14 @@ public class CucuStepDefs implements En {
                 e.printStackTrace();
             }
         });
+        
+        Given("^I have interface for my game$", () -> {
+            try {
+                Cities.class.getMethod("main", String[].class);
+            } catch(Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
     

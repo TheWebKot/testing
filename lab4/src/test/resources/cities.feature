@@ -96,3 +96,6 @@ Feature: Cities game
     And Current player answered "Кемерово"
     Then Should be thrown exception with message contains "over"
     
+  Scenario: interface
+    Given I have interface for my game
+    
